@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context="com.eventmanager.ManagerLoginActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:id="@+id/manager_login_toolbar"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/input_manager_id" >
+        android:id="@+id/input_manager_id"
+        app:layout_constraintTop_toBottomOf="@+id/manager_login_toolbar">
 
         <android.support.v7.widget.AppCompatEditText
             android:id="@+id/edittext_manager_id"
