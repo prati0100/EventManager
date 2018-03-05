@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Event Manager</string>
+    <string name="title_activity_manager_login">Log in</string>
     <string name="login_manager">Login as Manager</string>
     <string name="login_guest">Login as Guest</string>
+    <string name="login_enter_managerid">Enter Manager ID</string>
+    <string name="login_enter_password">Enter Password</string>
+    <string name="login">Login</string>
 </resources>
