@@ -76,7 +76,8 @@
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/login"
-            style="@style/ButtonStyle" />
+            style="@style/ButtonStyle"
+            android:onClick="onClickLogin"/>
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
