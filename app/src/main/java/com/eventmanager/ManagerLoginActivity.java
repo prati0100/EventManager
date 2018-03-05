@@ -29,7 +29,7 @@ public class ManagerLoginActivity extends AppCompatActivity {
     public void onClickLogin(View v) {
         String managerId, password;
         boolean result;
-        
+
         //Get the manager ID and password
         AppCompatEditText idEditText = findViewById(R.id.edittext_manager_id);
         AppCompatEditText passEditText = findViewById(R.id.edittext_password);

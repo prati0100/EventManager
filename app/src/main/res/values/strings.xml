@@ -6,5 +6,5 @@
     <string name="login_enter_managerid">Enter Manager ID</string>
     <string name="login_enter_password">Enter Password</string>
     <string name="login">Login</string>
-    <string name="login_failed">"Login failed!"</string>
+    <string name="login_failed">"Login failed! Check your ID and password and try again."</string>
 </resources>
