@@ -23,4 +23,10 @@
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
+    <!-- Style for all the buttons -->
+    <style name="ButtonStyle">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
 </resources>

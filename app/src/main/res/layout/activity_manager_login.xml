@@ -72,11 +72,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="30dp"
             android:layout_weight="0.75"
-            android:background="@color/colorRed"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="@string/login"
-            android:textColor="@color/colorWhite" />
+            style="@style/ButtonStyle" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
