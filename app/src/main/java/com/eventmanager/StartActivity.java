@@ -24,4 +24,13 @@ public class StartActivity extends AppCompatActivity {
         Intent i = new Intent(this, ManagerLoginActivity.class);
         startActivity(i);
     }
+
+    /** Start the Guest Activity
+     *
+     * @param v The view on which this is called. In this case, a button.
+     */
+    public void onClickLoginGuest(View v) {
+        Intent i = new Intent(this, GuestActivity.class);
+        startActivity(i);
+    }
 }

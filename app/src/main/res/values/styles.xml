@@ -29,4 +29,12 @@
         <item name="android:textColor">@color/colorWhite</item>
     </style>
 
+    <!-- Style for the bottom navigation bar -->
+    <style name="BottomNavigationStyle">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="itemTextColor">@color/colorWhite</item>
+        <item name="itemBackground">@drawable/bottomnav_item_bg</item>
+        <item name="itemIconTint">@color/colorWhite</item>
+    </style>
+
 </resources>

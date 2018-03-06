@@ -25,6 +25,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.eventmanager.StartActivity" />
         </activity>
+        <activity
+            android:name=".GuestActivity"
+            android:label="@string/title_activity_guest"></activity>
     </application>
 
 </manifest>
