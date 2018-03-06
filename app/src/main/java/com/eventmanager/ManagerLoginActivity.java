@@ -66,7 +66,7 @@ public class ManagerLoginActivity extends AppCompatActivity {
 
     }
 
-    private class LoginTask extends AsyncTask<String, Void, Boolean> {
+    private static class LoginTask extends AsyncTask<String, Void, Boolean> {
         protected Boolean doInBackground(String... params) {
             String managerId, password, hashed;
 
