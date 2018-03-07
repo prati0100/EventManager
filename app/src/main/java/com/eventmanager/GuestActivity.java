@@ -1,15 +1,24 @@
 package com.eventmanager;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 public class GuestActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private FragmentManager mFragmentManager;
+
+    private GuestEventsFragment mGuestEventsFragment;
+    private GuestHomeFragment mGuestHomeFragment;
+    private GuestScheduleFragment mGuestScheduleFragment;
+    private GuestSpeakersFragment mGuestSpeakersFragment;
+
+    private Fragment currentFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -18,16 +27,43 @@ public class GuestActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    //If the current fragment is the same, do nothing
+                    if(currentFragment == mGuestHomeFragment) {
+                        return true;
+                    }
+
+                    mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                            mGuestHomeFragment).commit();
+                    currentFragment = mGuestHomeFragment;
                     return true;
+
                 case R.id.navigation_schedule:
-                    mTextMessage.setText(R.string.title_schedule);
+                    if(currentFragment == mGuestScheduleFragment) {
+                        return true;
+                    }
+
+                    mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                            mGuestScheduleFragment).commit();
+                    currentFragment = mGuestScheduleFragment;
                     return true;
+
                 case R.id.navigation_events:
-                    mTextMessage.setText(R.string.title_events);
+                    if(currentFragment == mGuestEventsFragment) {
+                        return true;
+                    }
+
+                    mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                            mGuestEventsFragment).commit();
+                    currentFragment = mGuestEventsFragment;
                     return true;
+
                 case R.id.navigation_speakers:
-                    mTextMessage.setText(R.string.title_speakers);
+                    if(currentFragment == mGuestSpeakersFragment) {
+                        return true;
+                    }
+
+                    mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                            mGuestScheduleFragment).commit();
                     return true;
             }
             return false;
@@ -39,7 +75,21 @@ public class GuestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guest);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
+        //Initialize the fragment manager.
+        mFragmentManager = getFragmentManager();
+
+        //Initialize the fragments.
+        mGuestEventsFragment = new GuestEventsFragment();
+        mGuestHomeFragment = new GuestHomeFragment();
+        mGuestScheduleFragment = new GuestScheduleFragment();
+        mGuestSpeakersFragment = new GuestSpeakersFragment();
+
+        //Add the home fragment. This is the fragment that shows up when the activity is first
+        //started.
+        currentFragment = mGuestHomeFragment;
+        mFragmentManager.beginTransaction().add(R.id.guest_fragment_container, mGuestHomeFragment)
+                .commit();
+
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.guest_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
