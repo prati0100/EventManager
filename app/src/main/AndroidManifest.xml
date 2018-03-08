@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".StartActivity">
+        <activity android:name=".activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,16 +17,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ManagerLoginActivity"
+            android:name=".activities.ManagerLoginActivity"
             android:label="@string/title_activity_manager_login"
-            android:parentActivityName=".StartActivity"
+            android:parentActivityName=".activities.StartActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.eventmanager.StartActivity" />
+                android:value="com.eventmanager.activities.StartActivity" />
         </activity>
         <activity
-            android:name=".GuestActivity"
+            android:name=".activities.GuestActivity"
             android:label="@string/title_activity_guest"></activity>
     </application>
 

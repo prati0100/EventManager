@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eventmanager.GuestActivity">
+    tools:context="com.eventmanager.activities.GuestActivity">
 
     <!-- The layout for containing the various fragments of this activity -->
     <FrameLayout

@@ -1,13 +1,18 @@
-package com.eventmanager;
+package com.eventmanager.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.eventmanager.fragments.GuestEventsFragment;
+import com.eventmanager.fragments.GuestHomeFragment;
+import com.eventmanager.fragments.GuestScheduleFragment;
+import com.eventmanager.fragments.GuestSpeakersFragment;
+import com.eventmanager.R;
 
 public class GuestActivity extends AppCompatActivity {
 

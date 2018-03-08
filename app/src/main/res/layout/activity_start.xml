@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.eventmanager.StartActivity">
+    tools:context="com.eventmanager.activities.StartActivity">
 
     <!-- We wrap the buttons in LinearLayout to use the weightSum property. It allows us to specify
          the width of the buttons as a ratio of the screen size. In this case, since weightSum is 1,

@@ -1,4 +1,4 @@
-package com.eventmanager;
+package com.eventmanager.fragments;
 
 
 import android.support.v7.widget.RecyclerView;
@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import com.eventmanager.R;
 
 public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.ViewHolder> {
     //TODO: Change the data type of mDataset to array/list of Events.

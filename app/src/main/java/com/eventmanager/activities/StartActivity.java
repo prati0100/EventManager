@@ -1,9 +1,11 @@
-package com.eventmanager;
+package com.eventmanager.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.eventmanager.R;
 
 /** This activity is the first activity that shows up when the app is launched. It will bypass the
  * initial screen if the user has already logged in and jump directly to the corresponding activity

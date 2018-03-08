@@ -1,4 +1,4 @@
-package com.eventmanager;
+package com.eventmanager.activities;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,6 +8,8 @@ import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
+
+import com.eventmanager.R;
 
 import org.mindrot.jbcrypt.BCrypt;
 
