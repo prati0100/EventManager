@@ -2,6 +2,9 @@ package com.eventmanager;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,10 @@ import android.view.ViewGroup;
  * {@link GuestActivity}.
  */
 public class GuestEventsFragment extends Fragment {
+    private RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
     public GuestEventsFragment() {
         // Required empty public constructor
     }
@@ -21,5 +28,21 @@ public class GuestEventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_guest_events, container, false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        //Initialize the RecyclerView.
+        mRecyclerView = view.findViewById(R.id.guest_events_recycler);
+
+        //Use a linear layout manager for the recycler.
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        //Improves performance when the content layout size does not change for different items.
+        mRecyclerView.setHasFixedSize(true);
+
+        mAdapter = new GuestEventsAdapter();
+        mRecyclerView.setAdapter(mAdapter);
     }
 }
