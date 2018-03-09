@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.eventmanager.R;
 import com.eventmanager.activities.GuestActivity;
+import com.eventmanager.database.AppDatabase;
 
 
 /**
@@ -21,6 +22,8 @@ public class GuestEventsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private AppDatabase mDatabase;
 
     public GuestEventsFragment() {
         // Required empty public constructor
@@ -47,5 +50,9 @@ public class GuestEventsFragment extends Fragment {
 
         mAdapter = new GuestEventsAdapter();
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void setDatabase(AppDatabase database) {
+        mDatabase = database;
     }
 }

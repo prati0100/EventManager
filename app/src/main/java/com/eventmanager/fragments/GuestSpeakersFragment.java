@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.eventmanager.R;
 import com.eventmanager.activities.GuestActivity;
+import com.eventmanager.database.AppDatabase;
 
 
 /**
@@ -16,7 +17,7 @@ import com.eventmanager.activities.GuestActivity;
  * {@link GuestActivity}.
  */
 public class GuestSpeakersFragment extends Fragment {
-
+    private AppDatabase mDatabase;
 
     public GuestSpeakersFragment() {
         // Required empty public constructor
@@ -29,4 +30,7 @@ public class GuestSpeakersFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_guest_speakers, container, false);
     }
 
+    public void setDatabase(AppDatabase database) {
+        mDatabase = database;
+    }
 }
