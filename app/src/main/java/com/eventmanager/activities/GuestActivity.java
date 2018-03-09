@@ -68,7 +68,8 @@ public class GuestActivity extends AppCompatActivity {
                     }
 
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
-                            mGuestScheduleFragment).commit();
+                            mGuestSpeakersFragment).commit();
+                    currentFragment = mGuestSpeakersFragment;
                     return true;
             }
             return false;
