@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import com.eventmanager.R;
 import com.eventmanager.activities.GuestActivity;
 import com.eventmanager.database.AppDatabase;
+import com.eventmanager.database.entity.Event;
+
+import java.util.List;
 
 
 /**
@@ -48,7 +51,10 @@ public class GuestEventsFragment extends Fragment {
         //Improves performance when the content layout size does not change for different items.
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new GuestEventsAdapter();
+        //Get the list of all events.
+        List<Event> list = mDatabase.eventDao().getAllEvents();
+
+        mAdapter = new GuestEventsAdapter(list);
         mRecyclerView.setAdapter(mAdapter);
     }
 

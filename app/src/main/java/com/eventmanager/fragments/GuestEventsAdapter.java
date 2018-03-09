@@ -33,11 +33,9 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
         }
     }
 
-    //The dataset should be a list of Events. Right now the database is not implemented so
-    //using strings as dummy data.
-    //TODO: Get the dataset from the database.
-    public GuestEventsAdapter() {
-        mDataset = new ArrayList<>();
+    //The dataset should be the list of Events.
+    public GuestEventsAdapter(List<Event> list) {
+        mDataset = list;
     }
 
     // Create new views (invoked by the layout manager)
