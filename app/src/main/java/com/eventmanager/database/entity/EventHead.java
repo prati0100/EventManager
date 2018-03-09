@@ -1,25 +1,25 @@
-package com.eventmanager.entity;
+package com.eventmanager.database.entity;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by kunal on 09-03-2018.
- */
 
-@Entity (tableName = "speaker",
+@Entity(tableName = "EventHead",
         foreignKeys = @ForeignKey(entity = Event.class, parentColumns = "eventID", childColumns = "eventID"))
-public class Speaker {
+public class EventHead {
 
     @PrimaryKey
     public int id;
 
+    @ColumnInfo(name = "name")
     public String name;
 
-    public  String details;
+    public String password;
 
     public int eventID;
+
 
     public void setId(int id) {
         this.id = id;
@@ -29,8 +29,8 @@ public class Speaker {
         this.name = name;
     }
 
-    public void setDetails(String details) {
-        this.details = details;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setEventID(int eventID) {
@@ -45,8 +45,8 @@ public class Speaker {
         return name;
     }
 
-    public String getDetails() {
-        return details;
+    public String getPassword() {
+        return password;
     }
 
     public int getEventID() {

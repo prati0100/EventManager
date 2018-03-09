@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.eventmanager.R;
-import com.eventmanager.entity.Event;
+import com.eventmanager.database.entity.Event;
 
 import java.util.ArrayList;
 import java.util.List;

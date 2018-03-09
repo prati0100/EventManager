@@ -1,4 +1,4 @@
-package com.eventmanager.entity;
+package com.eventmanager.database.entity;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
