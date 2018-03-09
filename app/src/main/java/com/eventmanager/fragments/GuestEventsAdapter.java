@@ -37,7 +37,7 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
     public GuestEventsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
         // create a new view
-        View v = (TextView) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.guest_events_row, parent, false);
 
         return new ViewHolder(v);
