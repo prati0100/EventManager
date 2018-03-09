@@ -36,10 +36,10 @@ public interface EventDao {
     List<EventHead> getAllHeads();
 
     @Insert
-    void insertEvents(EventHead... eventHeads);
+    void insertEventHeads(EventHead... eventHeads);
 
     @Delete
-    void deleteEvent(EventHead event);
+    void deleteEventHead(EventHead event);
 
 
 
@@ -73,16 +73,4 @@ public interface EventDao {
 
     @Delete
     void deleteVolunteer(Volunteer volunteer);
-
-
-
-
-
-
-
-
-
-
-
-
 }
