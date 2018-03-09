@@ -1,11 +1,13 @@
 package com.eventmanager.activities;
 
+import android.arch.persistence.room.Room;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.eventmanager.R;
+import com.eventmanager.database.AppDatabase;
 
 /** This activity is the first activity that shows up when the app is launched. It will bypass the
  * initial screen if the user has already logged in and jump directly to the corresponding activity
@@ -16,6 +18,9 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "EventX").build();
+
     }
 
     /** Start the Manager Login Activity to prompt a manager to log in
