@@ -52,9 +52,16 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        //TODO: Update the view holder with appropriate data.
         // - get element from the dataset at this position
         // - replace the contents of the view with that element
+
+        Event event = mDataset.get(position);
+
+        holder.guestEventRowName.setText(event.getEventName());
+        //Date/time not yet implemented in Event's table.
+        //holder.guestEventRowTime.setText(event.getEventTime());
+        //holder.guestEventRowDate.setText(event.getEventDate());
+        holder.guestEventRowLocation.setText(event.getRoom());
 
         //To generate the colors for the row circle.
         ColorGenerator generator = ColorGenerator.MATERIAL;
