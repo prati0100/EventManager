@@ -15,6 +15,9 @@ import java.util.List;
 
 /**
  * Created by kunal on 09-03-2018.
+ *
+ * This interface is used by the Room library to build a database object. The library uses the
+ * queries specified here to build an implementation for the methods.
  */
 @Dao
 public interface EventDao {
