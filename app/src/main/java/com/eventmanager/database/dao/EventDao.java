@@ -49,6 +49,9 @@ public interface EventDao {
     @Query("SELECT * FROM Speaker")
     List<Speaker> getAllSpeakers();
 
+    @Query("SELECT * FROM event WHERE eventID = :eventId")
+    List<Event> getSpeakerEvent(int eventId);
+
     @Insert
     void insertSpeakers(Speaker... speakers);
 
