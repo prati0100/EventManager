@@ -17,7 +17,7 @@ public class Event {
 
     public String room;
 
-    // TODO  time
+    public String time; //takes time in format "HHMM" (24-hour)
 
     public void setEventID(int event_id) {
         this.eventID = event_id;
@@ -31,6 +31,10 @@ public class Event {
         this.room = room;
     }
 
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getRoom() {
         return room;
     }
@@ -41,5 +45,9 @@ public class Event {
 
     public String getEventName() {
         return eventName;
+    }
+
+    public String getTime() {
+        return time;
     }
 }
