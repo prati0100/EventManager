@@ -1,5 +1,6 @@
 package com.eventmanager.fragments;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
@@ -11,6 +12,10 @@ import android.view.ViewGroup;
 
 import com.eventmanager.R;
 import com.eventmanager.activities.GuestActivity;
+import com.eventmanager.database.AppDatabase;
+import com.eventmanager.database.entity.Event;
+
+import java.util.List;
 
 
 /**
@@ -21,6 +26,8 @@ public class GuestEventsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    private AppDatabase mDatabase;
 
     public GuestEventsFragment() {
         // Required empty public constructor
@@ -45,7 +52,24 @@ public class GuestEventsFragment extends Fragment {
         //Improves performance when the content layout size does not change for different items.
         mRecyclerView.setHasFixedSize(true);
 
-        mAdapter = new GuestEventsAdapter();
-        mRecyclerView.setAdapter(mAdapter);
+        //Get the list of all events. The database must not be accessed from the UI thread because
+        //it may potentially lock the UI for a long time.
+        new DatabaseTask().execute();
+
+    }
+
+    public void setDatabase(AppDatabase database) {
+        mDatabase = database;
+    }
+
+    class DatabaseTask extends AsyncTask<Void, Void, List<Event>> {
+        protected List<Event> doInBackground(Void... params) {
+            return mDatabase.eventDao().getAllEvents();
+        }
+
+        protected void onPostExecute(List<Event> list) {
+            mAdapter = new GuestEventsAdapter(list);
+            mRecyclerView.setAdapter(mAdapter);
+        }
     }
 }
