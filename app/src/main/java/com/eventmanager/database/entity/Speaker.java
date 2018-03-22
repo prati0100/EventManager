@@ -2,13 +2,13 @@ package com.eventmanager.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by kunal on 09-03-2018.
- */
+
 
 @Entity (tableName = "speaker",
+        indices = {@Index("eventID")},
         foreignKeys = @ForeignKey(entity = Event.class, parentColumns = "eventID", childColumns = "eventID"))
 public class Speaker {
 
@@ -20,6 +20,13 @@ public class Speaker {
     public  String details;
 
     public int eventID;
+
+    public Speaker (int id, String name, String details, int eventID) {
+        this.id = id;
+        this.name = name;
+        this.details = details;
+        this.eventID = eventID;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -51,5 +58,12 @@ public class Speaker {
 
     public int getEventID() {
         return eventID;
+    }
+
+    public static Speaker[] populateData() {
+        return new Speaker[]{
+                new Speaker(1101, "Speaker1", "Blah Blah blah blah blahhhhhhhh", 1001),
+                new Speaker(1102, "Speaker2", "Blah Blah blah blah blahhhhhhhh", 1002)
+        };
     }
 }
