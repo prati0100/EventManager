@@ -3,10 +3,12 @@ package com.eventmanager.database.entity;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
 
 @Entity(tableName = "EventHead",
+        indices = {@Index("eventID")},
         foreignKeys = @ForeignKey(entity = Event.class, parentColumns = "eventID", childColumns = "eventID"))
 public class EventHead {
 
@@ -19,6 +21,13 @@ public class EventHead {
     public String password;
 
     public int eventID;
+
+    public EventHead (int id, String name, String password, int eventID) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.eventID = eventID;
+    }
 
 
     public void setId(int id) {
@@ -51,5 +60,13 @@ public class EventHead {
 
     public int getEventID() {
         return eventID;
+    }
+
+    public static EventHead[] populateData() {
+        return new EventHead[] {
+                new EventHead(101, "EventHead1", "password1", 1001),
+                new EventHead(102, "EventHead2", "password2", 1002)
+
+        };
     }
 }

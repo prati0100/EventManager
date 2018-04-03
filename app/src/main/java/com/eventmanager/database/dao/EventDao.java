@@ -25,7 +25,8 @@ public interface EventDao {
     @Query("SELECT * FROM event")
     List<Event> getAllEvents();
 
-    //    TODO schedule query
+    @Query("SELECT * from event order by time")
+    List<Event> getEventSchedule();
 
     @Insert
     void insertEvents(Event... events);
