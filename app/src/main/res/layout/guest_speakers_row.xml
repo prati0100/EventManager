@@ -8,6 +8,7 @@
     android:focusable="true"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
+    android:layout_marginStart="7dp"
     android:orientation="vertical">
 
     <!-- This ImageView will be a circle with the first letter of the event name -->
