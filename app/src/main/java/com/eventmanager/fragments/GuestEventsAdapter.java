@@ -21,14 +21,11 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView guestEventRowName, guestEventRowTime, guestEventRowDate, guestEventRowLocation;
+        public TextView guestEventRowName;
         public ImageView guestEventRowCircle;
         public ViewHolder(View view) {
             super(view);
             guestEventRowName = view.findViewById(R.id.guest_events_row_name);
-            guestEventRowTime = view.findViewById(R.id.guest_events_row_time);
-            guestEventRowDate = view.findViewById(R.id.guest_events_row_date);
-            guestEventRowLocation = view.findViewById(R.id.guest_events_row_location);
             guestEventRowCircle = view.findViewById(R.id.guest_events_row_circle);
         }
     }
@@ -58,9 +55,6 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
         Event event = mDataset.get(position);
 
         holder.guestEventRowName.setText(event.getEventName());
-        holder.guestEventRowTime.setText(event.getEventTime());
-        holder.guestEventRowDate.setText(event.getEventDate());
-        holder.guestEventRowLocation.setText(event.getRoom());
 
         //To generate the colors for the row circle.
         ColorGenerator generator = ColorGenerator.MATERIAL;
