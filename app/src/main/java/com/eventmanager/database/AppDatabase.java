@@ -25,7 +25,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract EventDao eventDao();
 
-    private synchronized static AppDatabase getInstance(Context context) {
+    public synchronized static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
             INSTANCE = buildDatabase(context);
         }

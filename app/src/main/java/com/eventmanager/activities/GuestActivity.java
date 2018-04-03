@@ -2,7 +2,6 @@ package com.eventmanager.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -26,8 +25,6 @@ public class GuestActivity extends AppCompatActivity {
     private GuestSpeakersFragment mGuestSpeakersFragment;
 
     private Fragment currentFragment;
-
-    private AppDatabase mDatabase;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -94,21 +91,6 @@ public class GuestActivity extends AppCompatActivity {
         mGuestScheduleFragment = new GuestScheduleFragment();
         mGuestSpeakersFragment = new GuestSpeakersFragment();
 
-        //Initialize the database object.
-        mDatabase = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "EventX").build();
-
-        //Pass reference to the database object to each fragment. We use only one instance of the
-        //database object because it is expensive to create and we generally don't need multiple
-        //instances.
-        //It is often dangerous to pass an object this way to a fragment if there is a possibility
-        //for the fragment to outlive the activity. It does not happen in our case though, so
-        //no harm.
-        mGuestEventsFragment.setDatabase(mDatabase);
-        mGuestHomeFragment.setDatabase(mDatabase);
-        mGuestScheduleFragment.setDatabase(mDatabase);
-        mGuestSpeakersFragment.setDatabase(mDatabase);
-
         //Add the home fragment. This is the fragment that shows up when the activity is first
         //started.
         currentFragment = mGuestHomeFragment;
@@ -117,9 +99,5 @@ public class GuestActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.guest_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
-
-    public AppDatabase getDatabase() {
-        return mDatabase;
     }
 }

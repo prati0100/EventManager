@@ -28,8 +28,4 @@ public class GuestScheduleFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_guest_schedule, container, false);
     }
-
-    public void setDatabase(AppDatabase database) {
-        mDatabase = database;
-    }
 }

@@ -42,6 +42,9 @@ public class GuestEventsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        //Get the reference to the database object.
+        mDatabase = AppDatabase.getInstance(getActivity());
+
         //Initialize the RecyclerView.
         mRecyclerView = view.findViewById(R.id.guest_events_recycler);
 
@@ -56,10 +59,6 @@ public class GuestEventsFragment extends Fragment {
         //it may potentially lock the UI for a long time.
         new DatabaseTask().execute();
 
-    }
-
-    public void setDatabase(AppDatabase database) {
-        mDatabase = database;
     }
 
     class DatabaseTask extends AsyncTask<Void, Void, List<Event>> {

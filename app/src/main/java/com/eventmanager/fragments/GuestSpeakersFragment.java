@@ -45,6 +45,9 @@ public class GuestSpeakersFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        //Get the reference to the database object.
+        mDatabase = AppDatabase.getInstance(getActivity());
+
         //Initialize the RecyclerView.
         mRecyclerView = view.findViewById(R.id.guest_speakers_recycler);
 
@@ -77,9 +80,5 @@ public class GuestSpeakersFragment extends Fragment {
             mAdapter = new GuestSpeakersAdapter(list, speakerEvents);
             mRecyclerView.setAdapter(mAdapter);
         }
-    }
-
-    public void setDatabase(AppDatabase database) {
-        mDatabase = database;
     }
 }

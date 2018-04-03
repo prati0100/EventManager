@@ -27,8 +27,4 @@ public class GuestHomeFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_guest_home, container, false);
     }
-
-    public void setDatabase(AppDatabase database) {
-        mDatabase = database;
-    }
 }
