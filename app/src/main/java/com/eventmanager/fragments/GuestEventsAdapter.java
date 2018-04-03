@@ -58,9 +58,8 @@ public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.
         Event event = mDataset.get(position);
 
         holder.guestEventRowName.setText(event.getEventName());
-        //Date/time not yet implemented in Event's table.
-        //holder.guestEventRowTime.setText(event.getEventTime());
-        //holder.guestEventRowDate.setText(event.getEventDate());
+        holder.guestEventRowTime.setText(event.getEventTime());
+        holder.guestEventRowDate.setText(event.getEventDate());
         holder.guestEventRowLocation.setText(event.getRoom());
 
         //To generate the colors for the row circle.
