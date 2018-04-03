@@ -38,6 +38,9 @@ public class GuestActivity extends AppCompatActivity {
                         return true;
                     }
 
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_activity_guest));
+
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestHomeFragment).commit();
                     currentFragment = mGuestHomeFragment;
@@ -47,6 +50,9 @@ public class GuestActivity extends AppCompatActivity {
                     if(currentFragment == mGuestScheduleFragment) {
                         return true;
                     }
+
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_schedule));
 
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestScheduleFragment).commit();
@@ -58,6 +64,8 @@ public class GuestActivity extends AppCompatActivity {
                         return true;
                     }
 
+                    getSupportActionBar().setTitle(getResources().getString(R.string.title_events));
+
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestEventsFragment).commit();
                     currentFragment = mGuestEventsFragment;
@@ -67,6 +75,9 @@ public class GuestActivity extends AppCompatActivity {
                     if(currentFragment == mGuestSpeakersFragment) {
                         return true;
                     }
+
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_speakers));
 
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestSpeakersFragment).commit();
