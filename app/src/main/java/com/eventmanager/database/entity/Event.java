@@ -17,11 +17,14 @@ public class Event {
 
     public String time; //takes time in format "HHMM" (24-hour)
 
-    public Event (int eventID, String eventName, String room, String time) {
+    public String date; //Takes the date in format "DD/MM/YYYY"
+
+    public Event (int eventID, String eventName, String room, String time, String date) {
         this.eventID = eventID;
         this.eventName = eventName;
         this.room = room;
         this.time = time;
+        this.date = date;
     }
 
     public void setEventID(int event_id) {
@@ -40,6 +43,10 @@ public class Event {
         this.time = time;
     }
 
+    public void setDate(String date) {
+        this.date = date;
+    }
+
     public String getRoom() {
         return room;
     }
@@ -56,12 +63,15 @@ public class Event {
         return time;
     }
 
+    public String getDate() {
+        return date;
+    }
+
 
     public static Event[] populateData() {
         return new Event[] {
-                new Event(1001, "Demo_Event1", "AB1-303", "1300"),
-                new Event(1002, "Demo_Event2", "AB5-306", "0900")
-
+                new Event(1001, "Demo_Event1", "AB1-303", "1300", "24/03/2018"),
+                new Event(1002, "Demo_Event2", "AB5-306", "0900", "24/03/2018")
         };
     }
 }
