@@ -20,7 +20,6 @@ import com.eventmanager.database.entity.Speaker;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
  * A simple {@link Fragment} subclass. This fragment shows the speakers attending the events in
  * {@link GuestActivity}.
@@ -64,20 +63,23 @@ public class GuestSpeakersFragment extends Fragment {
 
     }
 
-    class DatabaseTask extends AsyncTask<Void, Void, List<Speaker>> {
-        protected List<Speaker> doInBackground(Void... params) {
-            return mDatabase.eventDao().getAllSpeakers();
-        }
+    private class DatabaseTask extends AsyncTask<Void, Void, RecyclerView.Adapter> {
+        protected RecyclerView.Adapter doInBackground(Void... params) {
+            List<Speaker> speakerList = mDatabase.eventDao().getAllSpeakers();
 
-        protected void onPostExecute(List<Speaker> list) {
             //The list of events of the speakers. For a speaker on index i in the speaker list,
             //the corresponding event is also on index i in speakerEvents list.
             //TODO: This is very hacky. Improve it.
-            List<Event> speakerEvents = new ArrayList<>(list.size());
-            for(Speaker s : list) {
-                speakerEvents.add(mDatabase.eventDao().getSpeakerEvent(s.getEventID()).get(0));
+            List<Event> speakerEventsList = new ArrayList<>(speakerList.size());
+            for(Speaker s : speakerList) {
+                speakerEventsList.add(mDatabase.eventDao().getSpeakerEvent(s.getEventID()).get(0));
             }
-            mAdapter = new GuestSpeakersAdapter(list, speakerEvents);
+
+            return new GuestSpeakersAdapter(speakerList, speakerEventsList);
+        }
+
+        protected void onPostExecute(RecyclerView.Adapter adapter) {
+            mAdapter = adapter;
             mRecyclerView.setAdapter(mAdapter);
         }
     }
