@@ -59,11 +59,11 @@ public class Event {
         return eventName;
     }
 
-    public String getTime() {
+    public String getEventTime() {
         return time;
     }
 
-    public String getDate() {
+    public String getEventDate() {
         return date;
     }
 
