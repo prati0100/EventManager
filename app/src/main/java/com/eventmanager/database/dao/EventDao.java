@@ -28,6 +28,9 @@ public interface EventDao {
     @Query("SELECT * from event order by time")
     List<Event> getEventSchedule();
 
+    @Query("SELECT * FROM Event WHERE eventID = :eventId")
+    List<Event> getEventById(int eventId);
+
     @Insert
     void insertEvents(Event... events);
 
