@@ -43,19 +43,12 @@ public class ManagerLoginActivity extends AppCompatActivity {
 
         result = doLogin(managerId, password);
 
-        //Show a toast telling the user whether the login succeeded or not.
-        if(result) {
-            Toast.makeText(this, getString(R.string.login_successful), Toast.LENGTH_LONG)
-                    .show();
-        }
-        else {
+        //Show a toast and return if the login failed.
+        if(!result) {
             Toast.makeText(this, getString(R.string.login_failed), Toast.LENGTH_LONG)
                     .show();
             return;
         }
-
-        //Login successful. Do other stuff here...
-
 
         // Launch ManagerActivity
         Intent i = new Intent(this, ManagerActivity.class);
