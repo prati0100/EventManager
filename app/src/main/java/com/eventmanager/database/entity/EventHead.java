@@ -64,8 +64,8 @@ public class EventHead {
 
     public static EventHead[] populateData() {
         return new EventHead[] {
-                new EventHead(101, "EventHead1", "password1", 1001),
-                new EventHead(102, "EventHead2", "password2", 1002)
+                new EventHead(101, "EventHead1", "$2a$10$hGbgmjGgFyITP4ojPVBKDupjBMd/lVVgVSvKaH.DK1SR2ouR.vQea", 1001), //Password = password1
+                new EventHead(102, "EventHead2", "$2a$10$gO7gQxDR9tuYAh5aiprQduubAVi9NzlHT4e6Wl9IBONLjGNq19s66", 1002) //Password = password2
 
         };
     }
