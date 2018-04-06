@@ -12,4 +12,5 @@
     <string name="title_schedule">Schedule</string>
     <string name="title_events">Events</string>
     <string name="title_speakers">Speakers</string>
+    <string name="text_home">Welcome! Choose what you want to see!</string>
 </resources>
