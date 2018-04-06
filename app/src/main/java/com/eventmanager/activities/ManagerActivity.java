@@ -12,12 +12,12 @@ import com.eventmanager.R;
 import com.eventmanager.fragments.ManagerEventsFragment;
 
 public class ManagerActivity extends AppCompatActivity {
+    private static int managerId;
 
     private FragmentManager mFragmentManager;
 
-    private Fragment currentFragment;
-
     private ManagerEventsFragment mManagerEventsFragment;
+    private Fragment currentFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -50,6 +50,10 @@ public class ManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
+        //Get the manager id from the intent;
+        String id = getIntent().getExtras().getString(ManagerLoginActivity.EXTRA_MANAGER_ID);
+        managerId = Integer.parseInt(id);
+
         mFragmentManager = getFragmentManager();
 
         mManagerEventsFragment = new ManagerEventsFragment();
@@ -63,4 +67,7 @@ public class ManagerActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
+    public static int getCurrentManagerId() {
+        return managerId;
+    }
 }

@@ -20,6 +20,7 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 
 public class ManagerLoginActivity extends AppCompatActivity {
+    public static String EXTRA_MANAGER_ID = "com.eventmanager.activities.MANAGER_ID";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class ManagerLoginActivity extends AppCompatActivity {
 
         // Launch ManagerActivity
         Intent i = new Intent(this, ManagerActivity.class);
+        //We need to tell ManagerActivity which manager is currently logged in.
+        i.putExtra(EXTRA_MANAGER_ID, managerId);
         startActivity(i);
     }
 
