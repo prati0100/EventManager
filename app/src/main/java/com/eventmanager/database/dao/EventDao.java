@@ -39,6 +39,9 @@ public interface EventDao {
     @Query("SELECT * FROM EventHead")
     List<EventHead> getAllHeads();
 
+    @Query("SELECT * FROM EventHead WHERE id = :id")
+    List<EventHead> getEventHeadFromId(int id);
+
     @Insert
     void insertEventHeads(EventHead... eventHeads);
 
