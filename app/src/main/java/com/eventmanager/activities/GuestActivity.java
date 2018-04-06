@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.eventmanager.database.AppDatabase;
 import com.eventmanager.fragments.GuestEventsFragment;
 import com.eventmanager.fragments.GuestHomeFragment;
 import com.eventmanager.fragments.GuestScheduleFragment;

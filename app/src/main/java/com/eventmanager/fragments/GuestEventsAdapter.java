@@ -13,7 +13,6 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.eventmanager.R;
 import com.eventmanager.database.entity.Event;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GuestEventsAdapter extends RecyclerView.Adapter<GuestEventsAdapter.ViewHolder> {
