@@ -27,7 +27,10 @@
         </activity>
         <activity
             android:name=".activities.GuestActivity"
-            android:label="@string/title_activity_guest"></activity>
+            android:label="@string/title_activity_guest" />
+        <activity
+            android:name=".activities.ManagerActivity"
+            android:label="@string/title_activity_manager"></activity>
     </application>
 
 </manifest>

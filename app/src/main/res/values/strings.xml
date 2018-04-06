@@ -14,4 +14,7 @@
     <string name="title_events">Events</string>
     <string name="title_speakers">Speakers</string>
     <string name="text_home">Welcome! Choose what you want to see!</string>
+    <string name="title_activity_manager">Welcome!</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

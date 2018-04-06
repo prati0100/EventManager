@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/manager_navigation_events"
+        android:icon="@drawable/ic_events_black_24dp"
+        android:title="@string/title_events" />
+
+    <item
+        android:id="@+id/manager_navigation_speakers"
+        android:icon="@drawable/ic_speakers_black_24dp"
+        android:title="@string/title_speakers" />
+
+</menu>

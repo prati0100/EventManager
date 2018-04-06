@@ -58,8 +58,8 @@ public class ManagerLoginActivity extends AppCompatActivity {
 
 
         // Launch ManagerActivity
-        //Intent i = new Intent(this, ManagerActivity.class);
-        //startActivity(i);
+        Intent i = new Intent(this, ManagerActivity.class);
+        startActivity(i);
     }
 
     private boolean doLogin(String managerId, String password) {
