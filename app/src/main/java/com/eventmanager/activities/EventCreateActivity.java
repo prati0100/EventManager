@@ -19,8 +19,6 @@ import com.eventmanager.database.entity.EventHead;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class EventCreateActivity extends AppCompatActivity {
 
@@ -103,8 +101,6 @@ public class EventCreateActivity extends AppCompatActivity {
 
             //Insert the new head in the database
             database.eventDao().insertEventHeads(head);
-
-            Logger.getGlobal().log(Level.WARNING, "Inserted everything");
 
             return head;
         }
