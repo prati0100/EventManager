@@ -129,7 +129,7 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
                     AppDatabase.getInstance(getActivity()));
             task.execute();
 
-            b.setText(R.string.save);
+            b.setText(R.string.edit);
         }
     }
 
