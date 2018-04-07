@@ -64,10 +64,9 @@ public class EventHead {
 
     public static EventHead[] populateData() {
         return new EventHead[] {
-                new EventHead(101, "Jane Doe", "hunter1", 1001),
-                new EventHead(102, "John Dan", "hunter2", 1002),
-                new EventHead(103, "Jim Johnson", "hunter3", 1003)
-
+                new EventHead(101, "Jane Doe", "$2a$10$eUGILrtZVlWeyT2z5kYMWOUzYDZRyy41For.5XwEMl2QBPedxIO.6", 1001), //Password: hunter1
+                new EventHead(102, "John Dan", "$2a$10$iW0JR5687W2ZHqLBH78pCeOeNkLx1lJ74SjPhenlEFwK/qsCHk176", 1002), //Password: hunter2
+                new EventHead(103, "Jim Johnson", "$2a$10$Cf4i9qdRPlmVTN/Hu5nIT.dKDcpAY8NHnhsDhgP89W5ZNTSkbvN8C", 1003) //Password: hunter3
         };
     }
 }
