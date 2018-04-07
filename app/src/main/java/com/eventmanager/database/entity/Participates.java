@@ -28,6 +28,10 @@ public class Participates {
         this.eventID = eventID;
     }
 
+    public void setParticipates_pk(int participates_pk) {
+        this.participates_pk = participates_pk;
+    }
+
     public int getPartID() {
         return partID;
     }
