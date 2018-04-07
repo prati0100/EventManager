@@ -19,6 +19,12 @@ public class Volunteer {
 
     public int eventID;
 
+    public Volunteer(int id, String name, int eventID) {
+        this.id = id;
+        this.name = name;
+        this.eventID = eventID;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -41,5 +47,16 @@ public class Volunteer {
 
     public int getEventID() {
         return eventID;
+    }
+
+    public static Volunteer[] populateData() {
+        return new Volunteer[] {
+                new Volunteer(1, "Jack Paulson", 1001),
+                new Volunteer(2, "Martha Hunt", 1001),
+                new Volunteer(3, "Craig Olsen", 1002),
+                new Volunteer(4, "John Reaver", 1002),
+                new Volunteer(5, "Alex Fergusen", 1002),
+                new Volunteer(6, "Jacob Preston", 1003)
+        };
     }
 }

@@ -47,6 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                 getInstance(context).eventDao().insertEvents(Event.populateData());
                                 getInstance(context).eventDao().insertEventHeads(EventHead.populateData());
                                 getInstance(context).eventDao().insertSpeakers(Speaker.populateData());
+                                getInstance(context).eventDao().insertVolunteers(Volunteer.populateData());
                                 //getInstance(context).eventDao().insertParticipants(Participant.populateData());
                             }
                         });
