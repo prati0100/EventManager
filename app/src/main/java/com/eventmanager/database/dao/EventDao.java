@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.eventmanager.database.entity.Event;
 import com.eventmanager.database.entity.EventHead;
@@ -36,6 +37,9 @@ public interface EventDao {
 
     @Delete
     void deleteEvent(Event event);
+
+    @Update
+    void updateEvents(Event... events);
 
 
 
