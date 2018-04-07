@@ -7,8 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 
-import com.eventmanager.database.AppDatabase;
 import com.eventmanager.fragments.GuestEventsFragment;
 import com.eventmanager.fragments.GuestHomeFragment;
 import com.eventmanager.fragments.GuestScheduleFragment;
@@ -38,6 +38,9 @@ public class GuestActivity extends AppCompatActivity {
                         return true;
                     }
 
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_activity_guest));
+
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestHomeFragment).commit();
                     currentFragment = mGuestHomeFragment;
@@ -47,6 +50,9 @@ public class GuestActivity extends AppCompatActivity {
                     if(currentFragment == mGuestScheduleFragment) {
                         return true;
                     }
+
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_schedule));
 
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestScheduleFragment).commit();
@@ -58,6 +64,8 @@ public class GuestActivity extends AppCompatActivity {
                         return true;
                     }
 
+                    getSupportActionBar().setTitle(getResources().getString(R.string.title_events));
+
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestEventsFragment).commit();
                     currentFragment = mGuestEventsFragment;
@@ -67,6 +75,9 @@ public class GuestActivity extends AppCompatActivity {
                     if(currentFragment == mGuestSpeakersFragment) {
                         return true;
                     }
+
+                    getSupportActionBar().setTitle(getResources()
+                            .getString(R.string.title_speakers));
 
                     mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
                             mGuestSpeakersFragment).commit();
@@ -99,5 +110,40 @@ public class GuestActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.guest_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    //The method the GuestHomeFragment calls when one of its buttons is clicked.
+    //Although fragments are supposed to be modular, and this breaks that modularity, the fragments
+    //in question are not modular anyway, so who cares.
+    public void onClickGuestHomeButton(View v) {
+        BottomNavigationView navigation = findViewById(R.id.guest_navigation);
+        switch (v.getId()) {
+            case R.id.button_home_events:
+                getSupportActionBar().setTitle(getResources().getString(R.string.title_events));
+
+                mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                        mGuestEventsFragment).commit();
+                currentFragment = mGuestEventsFragment;
+                navigation.setSelectedItemId(R.id.navigation_events);
+                break;
+            case R.id.button_home_schedule:
+                getSupportActionBar().setTitle(getResources()
+                        .getString(R.string.title_schedule));
+
+                mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                        mGuestScheduleFragment).commit();
+                currentFragment = mGuestScheduleFragment;
+                navigation.setSelectedItemId(R.id.navigation_schedule);
+                break;
+            case R.id.button_home_speakers:
+                getSupportActionBar().setTitle(getResources()
+                        .getString(R.string.title_speakers));
+
+                mFragmentManager.beginTransaction().replace(R.id.guest_fragment_container,
+                        mGuestSpeakersFragment).commit();
+                currentFragment = mGuestSpeakersFragment;
+                navigation.setSelectedItemId(R.id.navigation_speakers);
+                break;
+        }
     }
 }
