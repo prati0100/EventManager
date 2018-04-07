@@ -8,6 +8,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -86,6 +88,18 @@ public class ManagerActivity extends AppCompatActivity {
 
         BottomNavigationView navigation = findViewById(R.id.manager_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        if(currentFragment == mManagerEventsFragment) {
+            inflater.inflate(R.menu.manager_events_menu, menu);
+        }
+        else if(currentFragment == mManagerSpeakerFragment) {
+            inflater.inflate(R.menu.manager_speaker_menu, menu);
+        }
+        return true;
     }
 
     public static int getCurrentManagerId() {
