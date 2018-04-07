@@ -63,8 +63,14 @@ public interface EventDao {
     @Query("SELECT * FROM event WHERE eventID = :eventId")
     List<Event> getSpeakerEvent(int eventId);
 
+    @Query("SELECT * FROM speaker WHERE eventID = (SELECT eventId FROM eventHead WHERE id = :id)")
+    List<Speaker> getSpeakerFromManagerId(int id);
+
     @Insert
     void insertSpeakers(Speaker... speakers);
+
+    @Update
+    void updateSpeakers(Speaker... speakers);
 
     @Delete
     void deleteSpeaker(Speaker speaker);
