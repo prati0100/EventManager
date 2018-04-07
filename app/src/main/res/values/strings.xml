@@ -24,4 +24,7 @@
     <string name="edit">Edit</string>
     <string name="save">Save</string>
     <string name="database_access_fail">Error! Failed to access the database.</string>
+    <string name="speaker_name">Speaker Name</string>
+    <string name="event_id">Event ID</string>
+    <string name="speaker_details">Speaker Details</string>
 </resources>

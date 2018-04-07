@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.eventmanager.R;
 import com.eventmanager.fragments.ManagerEventsFragment;
+import com.eventmanager.fragments.ManagerSpeakerFragment;
 
 public class ManagerActivity extends AppCompatActivity {
     private static int managerId;
@@ -20,6 +21,8 @@ public class ManagerActivity extends AppCompatActivity {
     private FragmentManager mFragmentManager;
 
     private ManagerEventsFragment mManagerEventsFragment;
+    private ManagerSpeakerFragment mManagerSpeakerFragment;
+
     private Fragment currentFragment;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -42,6 +45,16 @@ public class ManagerActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.manager_navigation_speakers:
+                    if(currentFragment == mManagerSpeakerFragment) {
+                        return true;
+                    }
+
+                    getSupportActionBar().setTitle(R.string.title_events);
+
+                    mFragmentManager.beginTransaction()
+                            .replace(R.id.manager_fragment_container, mManagerSpeakerFragment)
+                            .commit();
+                    currentFragment = mManagerSpeakerFragment;
                     return true;
             }
             return false;
@@ -64,6 +77,7 @@ public class ManagerActivity extends AppCompatActivity {
         mFragmentManager = getFragmentManager();
 
         mManagerEventsFragment = new ManagerEventsFragment();
+        mManagerSpeakerFragment = new ManagerSpeakerFragment();
 
         //Initially, display the events fragment.
         currentFragment = mManagerEventsFragment;
