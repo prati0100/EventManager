@@ -64,8 +64,9 @@ public class EventHead {
 
     public static EventHead[] populateData() {
         return new EventHead[] {
-                new EventHead(101, "EventHead1", "password1", 1001),
-                new EventHead(102, "EventHead2", "password2", 1002)
+                new EventHead(101, "Jane Doe", "hunter1", 1001),
+                new EventHead(102, "John Dan", "hunter2", 1002),
+                new EventHead(103, "Jim Johnson", "hunter3", 1003)
 
         };
     }

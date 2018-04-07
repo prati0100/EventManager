@@ -70,8 +70,9 @@ public class Event {
 
     public static Event[] populateData() {
         return new Event[] {
-                new Event(1001, "Demo_Event1", "AB1-303", "1300", "24/03/2018"),
-                new Event(1002, "Demo_Event2", "AB5-306", "0900", "24/03/2018")
+                new Event(1001, "Relativity", "AB1-303", "1300", "24/03/2018"),
+                new Event(1002, "Quantum Mechanics", "AB5-306", "0900", "24/03/2018"),
+                new Event(1003, "Magnetism", "AB3-101", "1030", "24/03/2018")
         };
     }
 }

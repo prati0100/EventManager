@@ -3,9 +3,6 @@ package com.eventmanager.database.entity;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by kunal on 09-03-2018.
- */
 
 @Entity (tableName = "participant")
 public class Participant {
@@ -16,6 +13,12 @@ public class Participant {
     public String name;
 
     public String institute;
+
+    public Participant (int id, String name, String institute){
+        this.id = id;
+        this.name = name;
+        this.institute = institute;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -39,5 +42,13 @@ public class Participant {
 
     public String getInstitute() {
         return institute;
+    }
+
+    public static Participant[] populateData() {
+        return new Participant[]{
+                new Participant(1101, "Participant1", "Ins1"),
+                new Participant(1102, "Participant2", "Ins2")
+
+        };
     }
 }

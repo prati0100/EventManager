@@ -2,12 +2,13 @@ package com.eventmanager.database.entity;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 
-/**
- * Created by kunal on 09-03-2018.
- */
-@Entity (tableName = "volunteer", foreignKeys =
+
+@Entity (tableName = "volunteer",
+        indices = {@Index("eventID")},
+        foreignKeys =
          @ForeignKey(entity = Event.class, parentColumns = "eventID", childColumns = "eventID"))
 public class Volunteer {
 

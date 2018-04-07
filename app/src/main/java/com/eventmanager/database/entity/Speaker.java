@@ -62,8 +62,27 @@ public class Speaker {
 
     public static Speaker[] populateData() {
         return new Speaker[]{
-                new Speaker(1101, "Speaker1", "Blah Blah blah blah blahhhhhhhh", 1001),
-                new Speaker(1102, "Speaker2", "Blah Blah blah blah blahhhhhhhh", 1002)
+                new Speaker(1101, "Albert Einstein",
+                        "Albert Einstein is a " +
+                              "theoretical physicist who developed the theory of relativity, " +
+                              "one of the two pillars of modern physics " +
+                              "(alongside quantum mechanics).His work is also known for its " +
+                              "influence on the philosophy of science.",
+                        1001),
+
+                new Speaker(1102, "Niels Bohr",
+                        "Niels Henrik David Bohr is a Danish physicist who made " +
+                              "foundational contributions to understanding atomic structure " +
+                              "and quantum theory, for which he received the Nobel Prize in " +
+                              "Physics in 1922.",
+                        1002),
+
+                new Speaker(1103, "Michael Faraday",
+                        "Michael Faraday is an English scientist who contributed to the " +
+                              "study of electromagnetism and electrochemistry. His main " +
+                              "discoveries include the principles underlying electromagnetic " +
+                              "induction, diamagnetism and electrolysis.",
+                        1003)
         };
     }
 }
