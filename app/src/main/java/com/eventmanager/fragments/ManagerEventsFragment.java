@@ -1,28 +1,32 @@
 package com.eventmanager.fragments;
 
 
+import android.arch.persistence.room.Update;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.eventmanager.R;
+import com.eventmanager.activities.ManagerActivity;
 import com.eventmanager.database.AppDatabase;
 import com.eventmanager.database.entity.Event;
+import com.eventmanager.database.entity.EventHead;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
-public class ManagerEventsFragment extends Fragment {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+public class ManagerEventsFragment extends Fragment implements View.OnClickListener {
+    private Event mEvent;
 
-    private AppDatabase mDatabase;
+    private TextInputLayout mEventNameTextInput, mEventDateTextInput, mEventTimeTextInput;
+    private TextInputLayout mEventLocationTextInput;
 
     public ManagerEventsFragment() {
         // Required empty public constructor
@@ -37,32 +41,138 @@ public class ManagerEventsFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        //Get the reference to the database object.
-        mDatabase = AppDatabase.getInstance(getActivity());
+        //Get the database instance.
+        AppDatabase database = AppDatabase.getInstance(getActivity());
 
-        //Initialize the RecyclerView.
-        mRecyclerView = view.findViewById(R.id.manager_events_recycler);
-
-        //Use a linear layout manager for the recycler.
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        //Improves performance when the content layout size does not change for different items.
-        mRecyclerView.setHasFixedSize(true);
-
-        //Get the list of all events. The database must not be accessed from the UI thread because
-        //it may potentially lock the UI for a long time.
-        new DatabaseTask().execute();
-    }
-
-    class DatabaseTask extends AsyncTask<Void, Void, List<Event>> {
-        protected List<Event> doInBackground(Void... params) {
-            return mDatabase.eventDao().getAllEvents();
+        //Get the event the manager belongs to.
+        GetManagerEventTask task = new GetManagerEventTask(database);
+        task.execute();
+        try {
+            mEvent = task.get();
+        }
+        catch (InterruptedException | ExecutionException e) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.database_access_fail),
+                    Toast.LENGTH_LONG).show();
+            return;
         }
 
-        protected void onPostExecute(List<Event> list) {
-            mAdapter = new ManagerEventsAdapter(list);
-            mRecyclerView.setAdapter(mAdapter);
+        if(mEvent == null) {
+            Toast.makeText(getActivity(), getResources().getString(R.string.database_access_fail),
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //Now set the details of that event in the text fields.
+
+        //Set the name
+        mEventNameTextInput = view.findViewById(R.id.manager_events_name);
+        mEventNameTextInput.getEditText().setText(mEvent.getEventName());
+
+        //Set the date.
+        mEventDateTextInput = view.findViewById(R.id.manager_events_date);
+        mEventDateTextInput.getEditText().setText(mEvent.date);
+
+        //Set the time.
+        mEventTimeTextInput = view.findViewById(R.id.manager_events_time);
+        mEventTimeTextInput.getEditText().setText(mEvent.time);
+
+        //Set the location.
+        mEventLocationTextInput = view.findViewById(R.id.manager_events_location);
+        mEventLocationTextInput.getEditText().setText(mEvent.getRoom());
+
+        //Set the onClickListener for the button.
+        Button b = view.findViewById(R.id.button_manager_events_edit);
+        b.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View view) {
+        //The onClick in only for the edit/save button.
+        if(view.getId() != R.id.button_manager_events_edit) {
+            return;
+        }
+
+        Button b = (Button) view;
+
+        //If the user clicked on edit, get into edit mode. Enable all the text fields and
+        //change the text of the button to save.
+        if(b.getText().toString().equals(getResources().getString(R.string.edit))) {
+            //Enable all the text fields.
+            mEventNameTextInput.setEnabled(true);
+            mEventDateTextInput.setEnabled(true);
+            mEventTimeTextInput.setEnabled(true);
+            mEventLocationTextInput.setEnabled(true);
+
+            b.setText(R.string.save);
+        }
+
+        //If the user clicked on save, update the data in the database and disable all the
+        //text fields. Change the text of the button to edit.
+        else if (b.getText().toString().equals(getResources().getString(R.string.save))) {
+            //Disable all the text fields.
+            mEventNameTextInput.setEnabled(false);
+            mEventDateTextInput.setEnabled(false);
+            mEventTimeTextInput.setEnabled(false);
+            mEventLocationTextInput.setEnabled(false);
+
+            //Get the strings from the text fields.
+            String newName = mEventNameTextInput.getEditText().getText().toString();
+            String newDate = mEventDateTextInput.getEditText().getText().toString();
+            String newTime = mEventTimeTextInput.getEditText().getText().toString();
+            String newLocation = mEventLocationTextInput.getEditText().getText().toString();
+
+            //Create a new Event object with the new data.
+            Event newEvent = new Event(mEvent.getEventID(), newName, newLocation, newTime, newDate);
+
+            //Execute the update on a new thread.
+            UpdateManagerEventTask task = new UpdateManagerEventTask(newEvent,
+                    AppDatabase.getInstance(getActivity()));
+            task.execute();
+
+            b.setText(R.string.save);
+        }
+    }
+
+    static class GetManagerEventTask extends AsyncTask<Void, Void, Event> {
+        private AppDatabase database;
+
+        public GetManagerEventTask(AppDatabase database) {
+            this.database = database;
+        }
+
+        protected Event doInBackground(Void... params) {
+            List<EventHead> managerList = database.eventDao().
+                    getEventHeadFromId(ManagerActivity.getCurrentManagerId());
+
+            //There must only be one manager.
+            if(managerList.size() != 1) {
+                return null;
+            }
+
+            List<Event> list = database.eventDao().getEventById(managerList.get(0).getEventID());
+
+            //There must be only one event.
+            if(list.size() != 1) {
+                return null;
+            }
+
+            return list.get(0);
+        }
+    }
+
+    static class UpdateManagerEventTask extends AsyncTask<Void, Void, Void> {
+        private Event mEvent;
+        private AppDatabase database;
+
+        public UpdateManagerEventTask(Event mEvent, AppDatabase database) {
+            this.mEvent = mEvent;
+            this.database = database;
+        }
+
+        protected Void doInBackground(Void... params) {
+            //Update the database entry.
+            database.eventDao().updateEvents(mEvent);
+            return null;
         }
     }
 }

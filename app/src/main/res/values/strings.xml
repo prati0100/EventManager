@@ -17,4 +17,11 @@
     <string name="title_activity_manager">Welcome!</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="event_name">Event Name</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="location">Location</string>
+    <string name="edit">Edit</string>
+    <string name="save">Save</string>
+    <string name="database_access_fail">Error! Failed to access the database.</string>
 </resources>

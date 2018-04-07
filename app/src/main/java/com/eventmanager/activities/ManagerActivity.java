@@ -5,8 +5,11 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.eventmanager.R;
 import com.eventmanager.fragments.ManagerEventsFragment;
@@ -50,6 +53,10 @@ public class ManagerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
+        Toolbar toolbar = findViewById(R.id.manager_toolbar);
+        toolbar.setTitle(R.string.title_events);
+        setSupportActionBar(toolbar);
+
         //Get the manager id from the intent;
         String id = getIntent().getExtras().getString(ManagerLoginActivity.EXTRA_MANAGER_ID);
         managerId = Integer.parseInt(id);
@@ -63,7 +70,7 @@ public class ManagerActivity extends AppCompatActivity {
         mFragmentManager.beginTransaction()
                 .add(R.id.manager_fragment_container, mManagerEventsFragment).commit();
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.manager_navigation);
+        BottomNavigationView navigation = findViewById(R.id.manager_navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

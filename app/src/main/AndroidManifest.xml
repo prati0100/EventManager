@@ -30,7 +30,8 @@
             android:label="@string/title_activity_guest" />
         <activity
             android:name=".activities.ManagerActivity"
-            android:label="@string/title_activity_manager"></activity>
+            android:label="@string/title_activity_manager"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

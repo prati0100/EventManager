@@ -1,12 +1,107 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context="com.eventmanager.fragments.ManagerEventsFragment">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/manager_events_recycler"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/manager_events_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical" />
-</FrameLayout>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/event_name"
+            android:enabled="false"
+            android:theme="@style/TextEditStyle" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:id="@+id/manager_events_date_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1"
+        android:baselineAligned="false"
+        app:layout_constraintTop_toBottomOf="@id/manager_events_name">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/manager_events_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingStart="15dp"
+            android:paddingEnd="4dp">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/date"
+                android:enabled="false"
+                android:theme="@style/TextEditStyle" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/manager_events_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:paddingStart="4dp"
+            android:paddingEnd="15dp">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/time"
+                android:enabled="false"
+                android:theme="@style/TextEditStyle" />
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/manager_events_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/manager_events_date_time">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/location"
+            android:enabled="false"
+            android:theme="@style/TextEditStyle" />
+    </android.support.design.widget.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:id="@+id/layout_manager_events_edit"
+        android:weightSum="1"
+        app:layout_constraintTop_toBottomOf="@id/manager_events_location" >
+
+        <Button
+            android:id="@+id/button_manager_events_edit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:layout_weight="0.75"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:text="@string/edit"
+            style="@style/ButtonStyle" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
