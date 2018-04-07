@@ -2,16 +2,15 @@ package com.eventmanager.activities;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.eventmanager.R;
 import com.eventmanager.fragments.ManagerEventsFragment;
@@ -62,6 +61,17 @@ public class ManagerActivity extends AppCompatActivity {
             return false;
         }
     };
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.manager_events_menu_add_event:
+                Intent i = new Intent(this, EventCreateActivity.class);
+                startActivity(i);
+                return true;
+        }
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

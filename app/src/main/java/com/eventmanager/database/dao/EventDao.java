@@ -32,6 +32,9 @@ public interface EventDao {
     @Query("SELECT * FROM Event WHERE eventID = :eventId")
     List<Event> getEventById(int eventId);
 
+    @Query("SELECT MAX(eventID) FROM event")
+    int getMaxEventId();
+
     @Insert
     void insertEvents(Event... events);
 
@@ -48,6 +51,12 @@ public interface EventDao {
 
     @Query("SELECT * FROM EventHead WHERE id = :id")
     List<EventHead> getEventHeadFromId(int id);
+
+    @Query("SELECT MAX(id) FROM EventHead")
+    int getMaxEventHeadId();
+
+    @Query("SELECT COUNT(id) FROM EventHead")
+    int getEventHeadCount();
 
     @Insert
     void insertEventHeads(EventHead... eventHeads);

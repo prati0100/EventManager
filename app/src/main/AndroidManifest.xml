@@ -31,7 +31,10 @@
         <activity
             android:name=".activities.ManagerActivity"
             android:label="@string/title_activity_manager"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.EventCreateActivity"
+            android:label="@string/create_event"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
