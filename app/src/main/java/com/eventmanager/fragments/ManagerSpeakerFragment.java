@@ -151,12 +151,18 @@ public class ManagerSpeakerFragment extends Fragment implements View.OnClickList
             List<Speaker> speakerList = database.eventDao()
                     .getSpeakerFromManagerId(eventHead.getId());
 
-            //There must only be one speaker in the list.
-            if(eventHeadList.size() != 1) {
-                return null;
-            }
+            //If there is no speaker, create a blank one.
+            if(speakerList.size() == 0) {
+                int id = database.eventDao().getMaxSpeakerId();
+                id++; //Set the new speaker ID to previous max + 1
 
-            return speakerList.get(0);
+                Speaker speaker = new Speaker(id, "", "", eventHead.getEventID());
+                database.eventDao().insertSpeakers(speaker);
+
+                return speaker;
+            } else {
+                return speakerList.get(0);
+            }
         }
     }
 
