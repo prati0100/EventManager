@@ -8,4 +8,9 @@
         android:id="@+id/manager_events_menu_add_event"
         android:title="@string/add_event"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/manager_events_menu_delete_event"
+        android:title="@string/delete_event"
+        app:showAsAction="never" />
 </menu>
