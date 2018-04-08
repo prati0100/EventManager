@@ -104,8 +104,8 @@ public interface EventDao {
     List<Volunteer> getEventVolunteers(int eventId);
 
     @Insert
-    void insertVolunteers(Volunteer... volunteers);
+    void insertVolunteer(Volunteer volunteer);
 
     @Delete
-    void deleteVolunteer(Volunteer volunteer);
+    void deleteVolunteers(List<Volunteer> volunteers);
 }
