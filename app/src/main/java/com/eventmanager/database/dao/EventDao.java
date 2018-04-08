@@ -75,6 +75,9 @@ public interface EventDao {
     @Query("SELECT * FROM speaker WHERE eventID = (SELECT eventId FROM eventHead WHERE id = :id)")
     List<Speaker> getSpeakerFromManagerId(int id);
 
+    @Query("SELECT MAX(id) FROM speaker")
+    int getMaxSpeakerId();
+
     @Insert
     void insertSpeakers(Speaker... speakers);
 
