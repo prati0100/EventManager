@@ -75,12 +75,19 @@ public class GuestSpeakersFragment extends Fragment {
                 speakerEventsList.add(mDatabase.eventDao().getSpeakerEvent(s.getEventID()).get(0));
             }
 
-            return new GuestSpeakersAdapter(speakerList, speakerEventsList);
+            return new GuestSpeakersAdapter(speakerList, speakerEventsList, mRecyclerView, getContext());
         }
 
         protected void onPostExecute(RecyclerView.Adapter adapter) {
             mAdapter = adapter;
             mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    public static class RecyclerOnClickListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }
