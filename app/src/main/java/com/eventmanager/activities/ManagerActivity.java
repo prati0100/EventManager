@@ -65,6 +65,8 @@ public class ManagerActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            //Same code for both the add event options.
+            case R.id.manager_speaker_menu_add_event:
             case R.id.manager_events_menu_add_event:
                 Intent i = new Intent(this, EventCreateActivity.class);
                 startActivity(i);
