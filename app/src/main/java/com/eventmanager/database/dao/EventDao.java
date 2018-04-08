@@ -100,6 +100,9 @@ public interface EventDao {
     @Query("SELECT * FROM volunteer")
     List<Volunteer> getAllVolunteers();
 
+    @Query("SELECT * FROM volunteer WHERE eventID = :eventId")
+    List<Volunteer> getEventVolunteers(int eventId);
+
     @Insert
     void insertVolunteers(Volunteer... volunteers);
 
