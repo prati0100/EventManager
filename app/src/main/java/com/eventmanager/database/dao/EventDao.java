@@ -103,6 +103,9 @@ public interface EventDao {
     @Query("SELECT * FROM volunteer WHERE eventID = :eventId")
     List<Volunteer> getEventVolunteers(int eventId);
 
+    @Query("SELECT MAX(id) FROM volunteer")
+    int getMaxVolunteerId();
+
     @Insert
     void insertVolunteers(Volunteer... volunteers);
 

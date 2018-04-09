@@ -25,6 +25,7 @@ import com.eventmanager.database.entity.Speaker;
 import com.eventmanager.database.entity.Volunteer;
 import com.eventmanager.fragments.ManagerEventsFragment;
 import com.eventmanager.fragments.ManagerSpeakerFragment;
+import com.eventmanager.fragments.ManagerVolunteersFragment;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class ManagerActivity extends AppCompatActivity {
 
     private ManagerEventsFragment mManagerEventsFragment;
     private ManagerSpeakerFragment mManagerSpeakerFragment;
+    private ManagerVolunteersFragment mManagerVolunteersFragment;
 
     private Fragment currentFragment;
 
@@ -71,6 +73,19 @@ public class ManagerActivity extends AppCompatActivity {
                             .commit();
                     currentFragment = mManagerSpeakerFragment;
                     return true;
+
+                case R.id.manager_navigation_volunteers:
+                    if(currentFragment == mManagerVolunteersFragment) {
+                        return true;
+                    }
+
+                    getSupportActionBar().setTitle(R.string.volunteers);
+
+                    mFragmentManager.beginTransaction()
+                            .replace(R.id.manager_fragment_container, mManagerVolunteersFragment)
+                            .commit();
+                    currentFragment = mManagerVolunteersFragment;
+                    return true;
             }
             return false;
         }
@@ -88,6 +103,10 @@ public class ManagerActivity extends AppCompatActivity {
 
             case R.id.manager_events_menu_delete_event:
                 deleteCurrentEvent();
+                return true;
+
+            case R.id.manager_volunteers_menu_add:
+                mManagerVolunteersFragment.addVolunteer();
                 return true;
         }
         return true;
@@ -110,6 +129,7 @@ public class ManagerActivity extends AppCompatActivity {
 
         mManagerEventsFragment = new ManagerEventsFragment();
         mManagerSpeakerFragment = new ManagerSpeakerFragment();
+        mManagerVolunteersFragment = new ManagerVolunteersFragment();
 
         //Initially, display the events fragment.
         currentFragment = mManagerEventsFragment;
@@ -125,10 +145,12 @@ public class ManagerActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         if(currentFragment == mManagerEventsFragment) {
             inflater.inflate(R.menu.manager_events_menu, menu);
-        }
-        else if(currentFragment == mManagerSpeakerFragment) {
+        } else if(currentFragment == mManagerSpeakerFragment) {
             inflater.inflate(R.menu.manager_speaker_menu, menu);
+        } else if(currentFragment == mManagerVolunteersFragment) {
+            inflater.inflate(R.menu.manager_volunteers_menu, menu);
         }
+
         return true;
     }
 

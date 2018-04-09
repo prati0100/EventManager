@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_speakers_black_24dp"
         android:title="@string/title_speakers" />
 
+    <item
+        android:id="@+id/manager_navigation_volunteers"
+        android:icon="@drawable/ic_volunteers_black_24dp"
+        android:title="@string/volunteers" />
+
 </menu>

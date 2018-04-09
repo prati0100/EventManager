@@ -33,4 +33,10 @@
     <string name="delete_event">Delete Event</string>
     <string name="delete_event_prompt">Are you sure you want to delete the event?</string>
     <string name="alert">Alert</string>
+    <string name="volunteers">Volunteers</string>
+    <string name="add_volunteer">Add Volunteer</string>
+    <string name="delete_volunteer">Delete Volunteer</string>
+    <string name="delete_volunteer_prompt">Are you sure you want to delete the volunteer?</string>
+    <string name="volunteer_name">Volunteer name</string>
+    <string name="create_volunteer">Create Volunteer</string>
 </resources>

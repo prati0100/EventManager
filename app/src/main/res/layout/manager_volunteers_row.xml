@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="7dp"
+    android:orientation="vertical">
+
+    <!-- This ImageView will be a circle with the first letter of the volunteer name -->
+    <ImageView
+        android:id="@+id/manager_volunteers_row_circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/manager_volunteers_row_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        app:layout_constraintTop_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/manager_volunteers_row_circle"/>
+
+    <TextView
+        android:id="@+id/manager_volunteer_row_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="7dp"
+        android:paddingEnd="7dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/rounded_corner"
+        android:textColor="@color/colorWhite"
+        app:layout_constraintTop_toBottomOf="@id/manager_volunteers_row_name"
+        app:layout_constraintLeft_toRightOf="@id/manager_volunteers_row_circle" />
+
+</android.support.constraint.ConstraintLayout>

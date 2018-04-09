@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/manager_speaker_menu_add_event"
+        android:title="@string/add_event"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/manager_volunteers_menu_add"
+        android:title="@string/add_volunteer"
+        app:showAsAction="never" />
+</menu>
