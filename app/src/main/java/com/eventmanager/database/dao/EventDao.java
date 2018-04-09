@@ -108,4 +108,7 @@ public interface EventDao {
 
     @Delete
     void deleteVolunteers(List<Volunteer> volunteers);
+
+    @Delete
+    void deleteVolunteers(Volunteer... volunteers);
 }
