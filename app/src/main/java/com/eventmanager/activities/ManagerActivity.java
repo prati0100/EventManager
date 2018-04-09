@@ -31,7 +31,7 @@ import java.util.List;
 
 public class ManagerActivity extends AppCompatActivity {
     private static int managerId;
-    
+
     private FragmentManager mFragmentManager;
 
     private ManagerEventsFragment mManagerEventsFragment;
@@ -89,7 +89,7 @@ public class ManagerActivity extends AppCompatActivity {
         }
     };
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             //Same code for both the add event options.
@@ -108,7 +108,7 @@ public class ManagerActivity extends AppCompatActivity {
                 return true;
         }
         return true;
-    }
+    }*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,7 +138,7 @@ public class ManagerActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         if(currentFragment == mManagerEventsFragment) {
@@ -150,39 +150,7 @@ public class ManagerActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void deleteCurrentEvent() {
-        //Show an alert to confirm user action.
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.alert);
-        builder.setMessage(R.string.delete_event_prompt);
-
-        String positiveText = getString(android.R.string.ok);
-
-        AppDatabase database = AppDatabase.getInstance(getApplicationContext());
-
-        final EventDeleteTask task = new EventDeleteTask(database, this);
-        builder.setPositiveButton(positiveText, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                task.execute();
-
-                dialog.dismiss();
-            }
-        });
-
-        String negativeText = getString(android.R.string.cancel);
-        builder.setNegativeButton(negativeText, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //Do nothing.
-            }
-        });
-
-        //Display the dialog.
-        builder.create().show();
-    }
+    }*/
 
     public static int getCurrentManagerId() {
         return managerId;
@@ -237,5 +205,9 @@ public class ManagerActivity extends AppCompatActivity {
         protected void onPostExecute(Void v) {
             ((Activity) context).finish();
         }
+    }
+
+    public static void logOutManager() {
+        managerId = 0;
     }
 }

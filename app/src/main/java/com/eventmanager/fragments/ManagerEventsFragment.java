@@ -1,26 +1,39 @@
 package com.eventmanager.fragments;
 
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.arch.persistence.room.Update;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.app.Fragment;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.eventmanager.R;
+import com.eventmanager.activities.EventCreateActivity;
 import com.eventmanager.activities.ManagerActivity;
 import com.eventmanager.database.AppDatabase;
 import com.eventmanager.database.entity.Event;
 import com.eventmanager.database.entity.EventHead;
+import com.eventmanager.database.entity.Speaker;
+import com.eventmanager.database.entity.Volunteer;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
+import static com.eventmanager.activities.ManagerActivity.getCurrentManagerId;
 
 public class ManagerEventsFragment extends Fragment implements View.OnClickListener {
     private Event mEvent;
@@ -35,6 +48,7 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manager_events, container, false);
     }
@@ -83,6 +97,60 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
         //Set the onClickListener for the button.
         Button b = view.findViewById(R.id.button_manager_events_edit);
         b.setOnClickListener(this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.manager_events_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Same code for both the add event options.
+            case R.id.manager_events_menu_add_event:
+                Intent i = new Intent(getActivity(), EventCreateActivity.class);
+                startActivity(i);
+                return true;
+
+            case R.id.manager_events_menu_delete_event:
+                deleteCurrentEvent();
+                return true;
+        }
+        return true;
+    }
+
+    private void deleteCurrentEvent() {
+        //Show an alert to confirm user action.
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle(R.string.alert);
+        builder.setMessage(R.string.delete_event_prompt);
+
+        String positiveText = getString(android.R.string.ok);
+
+        AppDatabase database = AppDatabase.getInstance(getActivity());
+
+        final EventDeleteTask task = new EventDeleteTask(database, getActivity());
+        builder.setPositiveButton(positiveText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                task.execute();
+
+                dialog.dismiss();
+            }
+        });
+
+        String negativeText = getString(android.R.string.cancel);
+        builder.setNegativeButton(negativeText, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Do nothing.
+            }
+        });
+
+        //Display the dialog.
+        builder.create().show();
     }
 
     @Override
@@ -142,7 +210,7 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
 
         protected Event doInBackground(Void... params) {
             List<EventHead> managerList = database.eventDao().
-                    getEventHeadFromId(ManagerActivity.getCurrentManagerId());
+                    getEventHeadFromId(getCurrentManagerId());
 
             //There must only be one manager.
             if(managerList.size() != 1) {
@@ -173,6 +241,56 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
             //Update the database entry.
             database.eventDao().updateEvents(mEvent);
             return null;
+        }
+    }
+
+    private static class EventDeleteTask extends AsyncTask<Void, Void, Void> {
+        private AppDatabase database;
+        private Context context;
+
+        public EventDeleteTask(AppDatabase database, Context context) {
+            this.database = database;
+            this.context = context;
+        }
+
+        protected Void doInBackground(Void... params) {
+            //Get the current manager and corresponding event.
+            List<EventHead> eventHeadList = database.eventDao()
+                    .getEventHeadFromId(getCurrentManagerId());
+
+            EventHead head = eventHeadList.get(0);
+
+            List<Event> eventList = database.eventDao().getEventById(head.getEventID());
+
+            Event event = eventList.get(0);
+
+            //Get the speaker for this event.
+            List<Speaker> speakerList = database.eventDao().getSpeakerFromManagerId(head.getId());
+
+            Speaker speaker = speakerList.get(0);
+
+            //Get all the volunteers for this event.
+            List<Volunteer> volunteerList = database.eventDao().getEventVolunteers(event.getEventID());
+
+            //Delete the volunteers
+            database.eventDao().deleteVolunteers(volunteerList);
+
+            //Delete the event head.
+            database.eventDao().deleteEventHead(head);
+
+            //Delete the speaker.
+            database.eventDao().deleteSpeaker(speaker);
+
+            //Delete the event.
+            database.eventDao().deleteEvent(event);
+
+            ManagerActivity.logOutManager();
+
+            return null;
+        }
+
+        protected void onPostExecute(Void v) {
+            ((Activity) context).finish();
         }
     }
 }

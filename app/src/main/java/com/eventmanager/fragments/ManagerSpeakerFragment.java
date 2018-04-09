@@ -1,18 +1,23 @@
 package com.eventmanager.fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.eventmanager.R;
+import com.eventmanager.activities.EventCreateActivity;
 import com.eventmanager.activities.ManagerActivity;
 import com.eventmanager.database.AppDatabase;
 import com.eventmanager.database.entity.EventHead;
@@ -38,6 +43,7 @@ public class ManagerSpeakerFragment extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manager_speaker, container, false);
     }
@@ -82,6 +88,24 @@ public class ManagerSpeakerFragment extends Fragment implements View.OnClickList
         //Set the OnClickListener for the button.
         Button b = view.findViewById(R.id.button_manager_speaker_edit);
         b.setOnClickListener(this);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.manager_speaker_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            //Same code for both the add event options.
+            case R.id.manager_speaker_menu_add_event:
+                Intent i = new Intent(getActivity(), EventCreateActivity.class);
+                startActivity(i);
+                return true;
+        }
+        return true;
     }
 
     @Override
