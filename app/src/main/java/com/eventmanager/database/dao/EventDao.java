@@ -23,11 +23,8 @@ import java.util.List;
 @Dao
 public interface EventDao {
 
-    @Query("SELECT * FROM event")
+    @Query("SELECT * FROM event order by time")
     List<Event> getAllEvents();
-
-    @Query("SELECT * from event order by time")
-    List<Event> getEventSchedule();
 
     @Query("SELECT * FROM Event WHERE eventID = :eventId")
     List<Event> getEventById(int eventId);
