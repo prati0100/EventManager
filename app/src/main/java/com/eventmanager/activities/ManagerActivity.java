@@ -31,9 +31,7 @@ import java.util.List;
 
 public class ManagerActivity extends AppCompatActivity {
     private static int managerId;
-
-    private boolean done;
-
+    
     private FragmentManager mFragmentManager;
 
     private ManagerEventsFragment mManagerEventsFragment;
