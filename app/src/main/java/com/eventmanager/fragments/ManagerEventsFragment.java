@@ -30,6 +30,9 @@ import com.eventmanager.database.entity.EventHead;
 import com.eventmanager.database.entity.Speaker;
 import com.eventmanager.database.entity.Volunteer;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -188,6 +191,37 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
             String newDate = mEventDateTextInput.getEditText().getText().toString();
             String newTime = mEventTimeTextInput.getEditText().getText().toString();
             String newLocation = mEventLocationTextInput.getEditText().getText().toString();
+
+            if(newName.isEmpty() || newDate.isEmpty() || newTime.isEmpty() || newLocation.isEmpty()) {
+                Toast.makeText(getActivity(), R.string.create_event_error, Toast.LENGTH_LONG)
+                        .show();
+                return;
+            }
+
+            //Parse the date and time to make sure they are valid.
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+            //The parse() method does not (by default) throw an Exception if the date is correctly
+            // formatted but invalid on the calendar (e.g. 29/2/2001), instead it alters the date to be
+            // a valid one (in the previous example, to 1/3/2001).
+            dateFormat.setLenient(false);
+            try {
+                Date dDate = dateFormat.parse(newDate);
+            } catch (ParseException pe) {
+                Toast.makeText(getActivity(), R.string.event_date_format_error,
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HHmm");
+            timeFormat.setLenient(false);
+            try {
+                Date dTime = timeFormat.parse(newTime);
+            } catch (ParseException pe) {
+                Toast.makeText(getActivity(), R.string.event_time_format_error,
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
 
             //Create a new Event object with the new data.
             Event newEvent = new Event(mEvent.getEventID(), newName, newLocation, newTime, newDate);

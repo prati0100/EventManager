@@ -30,6 +30,9 @@
     <string name="add_event">Add Event</string>
     <string name="create_event">Create Event</string>
     <string name="event_created">Event Created!</string>
+    <string name="create_event_error">Error! No fields can be left empty. Enter values in all the fields and try again.</string>
+    <string name="event_date_format_error">Error! Incorrect date. Please use dd/mm/yyyy</string>
+    <string name="event_time_format_error">Error! Incorrect time. Please use the 24-hour format hhmm.</string>
     <string name="delete_event">Delete Event</string>
     <string name="delete_event_prompt">Are you sure you want to delete the event?</string>
     <string name="alert">Alert</string>

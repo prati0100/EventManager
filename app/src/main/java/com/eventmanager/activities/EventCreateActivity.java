@@ -56,6 +56,31 @@ public class EventCreateActivity extends AppCompatActivity {
             return;
         }
 
+        //Parse the date and time to make sure they are valid.
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        //The parse() method does not (by default) throw an Exception if the date is correctly
+        // formatted but invalid on the calendar (e.g. 29/2/2001), instead it alters the date to be
+        // a valid one (in the previous example, to 1/3/2001).
+        dateFormat.setLenient(false);
+        try {
+            Date dDate = dateFormat.parse(date);
+        } catch (ParseException pe) {
+            Toast.makeText(this, R.string.event_date_format_error, Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HHmm");
+        timeFormat.setLenient(false);
+        try {
+            Date dTime = timeFormat.parse(time);
+        } catch (ParseException pe) {
+            Toast.makeText(this, R.string.event_time_format_error, Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+
         //Set the event ID to 0 for now. We will later query the database to pick
         //An appropriate event ID.
         Event event = new Event(0, name, location, time, date);
