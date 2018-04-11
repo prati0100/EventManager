@@ -18,6 +18,11 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        //Initialize the database object. Initializing it later may cause performance hiccups on
+        //first launch because creating the database for the first time takes time. This results in
+        //some views rendering incorrectly.
+        AppDatabase.getInstance(this);
+
     }
 
     /** Start the Manager Login Activity to prompt a manager to log in
