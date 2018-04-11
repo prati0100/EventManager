@@ -60,12 +60,19 @@ public class GuestSpeakersFragment extends Fragment {
         //Get the list of all events. The database must not be accessed from the UI thread because
         //it may potentially lock the UI for a long time.
         new DatabaseTask().execute();
-
     }
 
     private class DatabaseTask extends AsyncTask<Void, Void, RecyclerView.Adapter> {
         protected RecyclerView.Adapter doInBackground(Void... params) {
             List<Speaker> speakerList = mDatabase.eventDao().getAllSpeakers();
+
+            //Remove the dummy speakers. Dummy speakers are inserted when an event is created.
+            //They do not have their attributes set up yet, so do not include them in this list.creation of dummy speaker from speaker to events fragmen
+            for(Speaker s : speakerList) {
+                if(s.getName().equals("") || s.getDetails().equals("")) {
+                    speakerList.remove(s);
+                }
+            }
 
             //The list of events of the speakers. For a speaker on index i in the speaker list,
             //the corresponding event is also on index i in speakerEvents list.

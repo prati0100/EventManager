@@ -15,6 +15,7 @@ import com.eventmanager.R;
 import com.eventmanager.database.AppDatabase;
 import com.eventmanager.database.entity.Event;
 import com.eventmanager.database.entity.EventHead;
+import com.eventmanager.database.entity.Speaker;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -101,6 +102,13 @@ public class EventCreateActivity extends AppCompatActivity {
 
             //Insert the new head in the database
             database.eventDao().insertEventHeads(head);
+
+            //Create a dummy speaker.
+            int id = database.eventDao().getMaxSpeakerId();
+            id++; //Set the new speaker ID to previous max + 1
+
+            Speaker speaker = new Speaker(id, "", "", head.getEventID());
+            database.eventDao().insertSpeakers(speaker);
 
             return head;
         }

@@ -217,22 +217,6 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
                 return null;
             }
 
-            EventHead head = managerList.get(0);
-
-            //Get the speaker for this event.
-            List<Speaker> speakerList = database.eventDao().getSpeakerFromManagerId(head.getId());
-
-            //If the speaker does not exist, this means that the event was newly created from the
-            //EventCreateActivity and the speaker row was not inserted in the database.
-            //Create a blank speaker.
-            if(speakerList.size() == 0) {
-                int id = database.eventDao().getMaxSpeakerId();
-                id++; //Set the new speaker ID to previous max + 1
-
-                Speaker speaker = new Speaker(id, "", "", head.getEventID());
-                database.eventDao().insertSpeakers(speaker);
-            }
-
             List<Event> list = database.eventDao().getEventById(managerList.get(0).getEventID());
 
             //There must be only one event.
