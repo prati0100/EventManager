@@ -90,11 +90,4 @@ public class GuestSpeakersFragment extends Fragment {
             mRecyclerView.setAdapter(mAdapter);
         }
     }
-
-    public static class RecyclerOnClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-
-        }
-    }
 }
