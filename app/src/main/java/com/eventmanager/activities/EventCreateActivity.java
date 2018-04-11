@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import com.eventmanager.R;
 import com.eventmanager.database.AppDatabase;
@@ -19,6 +20,9 @@ import com.eventmanager.database.entity.Speaker;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class EventCreateActivity extends AppCompatActivity {
@@ -46,6 +50,11 @@ public class EventCreateActivity extends AppCompatActivity {
 
         textInputLayout = findViewById(R.id.manager_create_event_location);
         String location = textInputLayout.getEditText().getText().toString();
+
+        if(name.isEmpty() || date.isEmpty() || time.isEmpty() || location.isEmpty()) {
+            Toast.makeText(this, R.string.create_event_error, Toast.LENGTH_LONG).show();
+            return;
+        }
 
         //Set the event ID to 0 for now. We will later query the database to pick
         //An appropriate event ID.
