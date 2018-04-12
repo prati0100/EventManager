@@ -180,12 +180,6 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
         //If the user clicked on save, update the data in the database and disable all the
         //text fields. Change the text of the button to edit.
         else if (b.getText().toString().equals(getResources().getString(R.string.save))) {
-            //Disable all the text fields.
-            mEventNameTextInput.setEnabled(false);
-            mEventDateTextInput.setEnabled(false);
-            mEventTimeTextInput.setEnabled(false);
-            mEventLocationTextInput.setEnabled(false);
-
             //Get the strings from the text fields.
             String newName = mEventNameTextInput.getEditText().getText().toString();
             String newDate = mEventDateTextInput.getEditText().getText().toString();
@@ -222,6 +216,12 @@ public class ManagerEventsFragment extends Fragment implements View.OnClickListe
                         Toast.LENGTH_LONG).show();
                 return;
             }
+
+            //Disable all the text fields.
+            mEventNameTextInput.setEnabled(false);
+            mEventDateTextInput.setEnabled(false);
+            mEventTimeTextInput.setEnabled(false);
+            mEventLocationTextInput.setEnabled(false);
 
             //Create a new Event object with the new data.
             Event newEvent = new Event(mEvent.getEventID(), newName, newLocation, newTime, newDate);
